@@ -1,0 +1,6 @@
+parameters:
+  numeric: 123
+  string: ABC
+  alias: '%kernel.debug%'
+  interpolated: '%string%_%numeric%'
+  nested: 'nest_%interpolated%'

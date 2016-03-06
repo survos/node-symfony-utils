@@ -3,7 +3,7 @@ var path = require('path'),
     _ = require('lodash'),
     yaml = require('js-yaml'),
     options = {
-        debug: true,
+        debug: false,
         rootDir: path.join(process.cwd(), 'app'),
         environment: 'prod'
     };

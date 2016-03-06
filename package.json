@@ -4,12 +4,16 @@
   "description": "Read Symfony parameters and more in node.js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "Keith C. Ivey <keith@iveys.org>",
   "license": "MIT",
   "dependencies": {
     "js-yaml": "^3.5.3",
     "lodash": "^4.6.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
   }
 }
