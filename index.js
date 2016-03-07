@@ -6,6 +6,11 @@ var path = require('path'),
         debug: false,
         rootDir: path.join(process.cwd(), 'app'),
         environment: 'prod'
+    },
+    kernelMap = {
+        debug: 'debug',
+        root_dir: 'rootDir',
+        environment: 'environment'
     };
 
 module.exports = {
@@ -19,9 +24,9 @@ module.exports = {
             parametersFile = path.join(options.rootDir, 'config', 'parameters.yml');
         }
         var parameters = yaml.safeLoad(fs.readFileSync(parametersFile), 'utf8').parameters;
-        parameters['kernel.debug'] = options.debug;
-        parameters['kernel.root_dir'] = options.rootDir;
-        parameters['kernel.environment'] = options.environment;
+        _.each(kernelMap, function (optionsKey, kernelKey) {
+            parameters['kernel.' + kernelKey] = options[optionsKey];
+        });
         return expand(parameters);
     }
 };
