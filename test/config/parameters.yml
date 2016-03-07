@@ -4,3 +4,10 @@ parameters:
   alias: '%kernel.debug%'
   interpolated: '%string%_%numeric%'
   nested: 'nest_%interpolated%'
+  array:
+    - one
+    - 2
+    - ['%alias%', '%string%DEF']
+  object:
+    env: '%kernel.environment%'
+    percent: '100%%'

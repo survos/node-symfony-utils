@@ -30,7 +30,9 @@ describe('parameters', function () {
             string: 'ABC',
             alias: false,
             interpolated: 'ABC_123',
-            nested: 'nest_ABC_123'
+            nested: 'nest_ABC_123',
+            array: ['one', 2, [false, 'ABCDEF']],
+            object: {env: 'prod', percent: '100%'}
         });
     });
 });
