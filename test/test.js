@@ -1,4 +1,5 @@
-var assert = require('chai').assert,
+var path = require('path'),
+    assert = require('chai').assert,
     _ = require('lodash'),
     rootDir = __dirname,
     sf = require('../');
@@ -14,7 +15,9 @@ describe('options', function () {
         assert.deepEqual(options, {
             debug: false,
             environment: 'prod',
-            rootDir: rootDir
+            rootDir: rootDir,
+            cacheDir: path.join('%kernel.root_dir%', 'cache', '%kernel.environment%'),
+            logsDir: path.join('%kernel.root_dir%', 'logs')
         });
     });
 });
@@ -26,6 +29,8 @@ describe('parameters', function () {
             'kernel.debug': false,
             'kernel.environment': 'prod',
             'kernel.root_dir': rootDir,
+            'kernel.cache_dir': path.join(rootDir, 'cache', 'prod'),
+            'kernel.logs_dir': path.join(rootDir, 'logs'),
             numeric: 123,
             string: 'ABC',
             alias: false,

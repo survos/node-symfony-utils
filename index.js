@@ -5,12 +5,16 @@ var path = require('path'),
     options = {
         debug: false,
         rootDir: path.join(process.cwd(), 'app'),
-        environment: 'prod'
+        environment: 'prod',
+        cacheDir: path.join('%kernel.root_dir%', 'cache', '%kernel.environment%'),
+        logsDir: path.join('%kernel.root_dir%', 'logs')
     },
     kernelMap = {
         debug: 'debug',
         root_dir: 'rootDir',
-        environment: 'environment'
+        environment: 'environment',
+        logs_dir: 'logsDir',
+        cache_dir: 'cacheDir'
     };
 
 module.exports = {
