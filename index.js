@@ -17,23 +17,31 @@ var path = require('path'),
         cache_dir: 'cacheDir'
     };
 
-module.exports = {
-
-    options: function (newOptions) {
-        return _.extend(options, newOptions);
+module.exports = _.extend(
+    function (newOptions) {
+        optionsAccessor(newOptions);
+        return module.exports;
     },
-
-    parameters: function (parametersFile) {
-        if (!parametersFile) {
-            parametersFile = path.join(options.rootDir, 'config', 'parameters.yml');
-        }
-        var parameters = yaml.safeLoad(fs.readFileSync(parametersFile), 'utf8').parameters;
-        _.each(kernelMap, function (optionsKey, kernelKey) {
-            parameters['kernel.' + kernelKey] = options[optionsKey];
-        });
-        return expand(parameters);
+    {
+        options: optionsAccessor,
+        parameters: parseParametersFile
     }
-};
+);
+
+function optionsAccessor(newOptions) {
+    return _.extend(options, newOptions);
+}
+
+function parseParametersFile(parametersFile) {
+    if (!parametersFile) {
+        parametersFile = path.join(options.rootDir, 'config', 'parameters.yml');
+    }
+    var parameters = yaml.safeLoad(fs.readFileSync(parametersFile), 'utf8').parameters;
+    _.each(kernelMap, function (optionsKey, kernelKey) {
+        parameters['kernel.' + kernelKey] = options[optionsKey];
+    });
+    return expand(parameters);
+}
 
 function expand(value, parameters) {
     var m;

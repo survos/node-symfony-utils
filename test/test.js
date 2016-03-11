@@ -2,9 +2,7 @@ var path = require('path'),
     assert = require('chai').assert,
     _ = require('lodash'),
     rootDir = __dirname,
-    sf = require('../');
-
-sf.options({rootDir: rootDir});
+    sf = require('../')({rootDir: rootDir});
 
 describe('options', function () {
     var options = sf.options();
